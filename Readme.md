@@ -1,35 +1,21 @@
 ---
 title: "knitr Encoding in RStudio on Win7"
 author: "Arnold Cross"
-date: "`r Sys.Date()`"
+date: "2018-05-12"
 output: 
   html_document: 
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 
-es <- readLines("setting.txt")
-es <- sub( "^\\*", "", es[grep("^\\*", es)] )
-if ( length(es) != 1 ) es <- "Not Identified"
-os <- sub( "Service Pack", "SP", win.version() )
-if ( !grepl("x64", os) ) os <- paste(os, " 32-bit")
-```
 
-```{r include=FALSE}
-"To do:
-Clean up the folder.
-Final knit on Blue.
-git
-"
-```
 
-OS: `r os`
 
-`r R.version.string`
+OS: Windows 7 x64 (build 7601) SP 1
 
-Encoding Setting:  `r es`  (This is identified manually and could be wrong if <setting.txt> wasn't updated prior to knitting.)
+R version 3.4.4 (2018-03-15)
+
+Encoding Setting:  ISO-8859-1  (This is identified manually and could be wrong if <setting.txt> wasn't updated prior to knitting.)
 
 ## Introduction
 
@@ -57,17 +43,27 @@ The text that I use for this demonstration is shown here with a graphic, so you 
 
 That text is contained in a file, <input.txt>.
 
-```{r readText}
+
+```r
 russianText <- readLines("input.txt")
 cat( Encoding(russianText) )
+```
+
+```
+## unknown
 ```
 
 R considers the encoding of the file to be unknown, but I can confirm with the following code chunk that it is UTF-8.
 
 ### Starting Bytes
 
-```{r unkEncoding}
+
+```r
 cat( charToRaw(substr( russianText, 1, 6 )) )
+```
+
+```
+## d0 9a d0 be d0 b3
 ```
 
 Those bytes are the UTF-8 encodings of U+041A, U+043E, and U+0433, which correspond to the first three letters in my Russian text.  I will refer to them as the "STARTING BYTES".  They are always d0 9a d0 be d0 b3 regardless of the ENCODING SETTING.  Just to be sure that readLines() isn't converting the text, I wrote the following perl script to inspect the bytes.
@@ -100,8 +96,13 @@ When the [Knit] button is clicked in RStudio to knit this Rmd file, an md file a
 
 The following code chunk renders the same text from the execution environment.
 
-```{r knittedText}
+
+```r
 cat(russianText)
+```
+
+```
+## Кого Вы хотите видеть в качестве VIP-персоны на форуме?
 ```
 
 I will refer to that as the "KNITTED TEXT", because it is generated when this file is knitted.  This report will discuss how the KNITTED TEXT appears in the md and html files.
@@ -319,10 +320,12 @@ This further suggests that the html file is not generated from the md file, sinc
 Although I have described plausible ways that both the PASTED TEXT and the KNITTED TEXT of the html file could be generated from the md file, they involve different interpretations of the md file.  It is more likely that knitr produces the html file directly, passing the PASTED TEXT from the RStudio editor and passing the KNITTED TEXT from its R workspace.
 
 ## Computer Configuration
-```{r verFile}
+
+```r
 verFile     <- "verInfo.csv"
 ```
-```{r versions, eval=FALSE}
+
+```r
 doneBefore  <- F
 gotVerFile  <- file.exists(verFile)
 packsNeeded <- readLines("packs.txt")
@@ -346,13 +349,13 @@ if (!doneBefore) {
 }
 ```
 
-The code chunk above saves version information for each unique configuration on which I tested this, but it will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, <`r verFile`>, which you can open to see the RStudio version and package versions for each Windows and R combination that I tested.  The Windows and R combination for any given knit is noted at the top of this report and at the top of each Sample file.  For any given Windows and R combination, I did not test different versions of any packages nor of RStudio.
+The code chunk above saves version information for each unique configuration on which I tested this, but it will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, <verInfo.csv>, which you can open to see the RStudio version and package versions for each Windows and R combination that I tested.  The Windows and R combination for any given knit is noted at the top of this report and at the top of each Sample file.  For any given Windows and R combination, I did not test different versions of any packages nor of RStudio.
 
 Most of my work was done on a Dell E6430 running 64-bit Windows 7 Pro and R v3.4.4 x64.  That is the configuration under which each graphic was taken, unless otherwise noted.
 
 ### R v3.4.0
 
-I tested R v3.4.0 x64 on the same computer to see whether the behavior has been changed by the most recent changes to R.  It has not.  All the ENCODING SETTINGS gave results that were identical to the results from R v3.4.4.  <`r verFile`> shows that all the packages had the same version except the base packages and yaml.  The base packages follow the R version number, and yaml was only one patch different.
+I tested R v3.4.0 x64 on the same computer to see whether the behavior has been changed by the most recent changes to R.  It has not.  All the ENCODING SETTINGS gave results that were identical to the results from R v3.4.4.  <verInfo.csv> shows that all the packages had the same version except the base packages and yaml.  The base packages follow the R version number, and yaml was only one patch different.
 
 ### On 32-bit Windows 7
 
@@ -376,7 +379,7 @@ And, it looked like this in the html file:
 
 Those both look like ISO-8859-1 interpretations, but R did something interesting with the control codes.  The second character should be U+009A, but instead of encoding that as the UTF-8 sequence c2 9a, which seems to generally not be rendered, knitr converted it into a sequence of single-byte UTF-8 characters that present the code point in human-readable form.
 
-According to <`r verFile`>, RStudio was at patch 383, whereas it was at patch 442 on the other computer.  Apparently the ENCODING SETTING had not yet been implemented at patch 383, since it had no effect on the results.  
+According to <verInfo.csv>, RStudio was at patch 383, whereas it was at patch 442 on the other computer.  Apparently the ENCODING SETTING had not yet been implemented at patch 383, since it had no effect on the results.  
 
 ## Pandoc
 
