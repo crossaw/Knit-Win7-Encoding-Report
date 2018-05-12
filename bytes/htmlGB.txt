@@ -1,0 +1,6 @@
+
+PASTED TEXT:
+3c 70 3e e8 a2 a3 e8 8a af e8 b0 90 e8 8a af 20 e8 a2 99 e8 a4 98 20 e8 a4 8f e8 8a af e8 a4 8c e6 87 88 e8 a4 8c e6 a2 b0 20 e8 83 81 e6 87 88 e5 86 99 e6 a2 b0 e8 a4 8c e8 a4 9c 20 e8 83 81 20 e6 b3 bb e9 82 aa e8 a4 94 e6 a2 b0 e8 a4 8b e8 a4 8c e8 83 81 e6 a2 b0 20 56 49 50 2d e9 94 8c e6 a2 b0 e8 a4 89 e8 a4 8b e8 8a af e8 96 aa e8 a4 98 20 e8 96 aa e9 82 aa 20 e8 a4 8e e8 8a af e8 a4 89 e8 a4 8d e5 b1 91 e6 a2 b0 3f 3c 2f 70 3e 0a 
+
+KNITTED TEXT:
+3c 70 72 65 3e 3c 63 6f 64 65 3e 23 23 20 c3 90 c5 a1 c3 90 c2 be c3 90 c2 b3 c3 90 c2 be 20 c3 90 e2 80 99 c3 91 e2 80 b9 20 c3 91 e2 80 a6 c3 90 c2 be c3 91 e2 80 9a c3 90 c2 b8 c3 91 e2 80 9a c3 90 c2 b5 20 c3 90 c2 b2 c3 90 c2 b8 c3 90 c2 b4 c3 90 c2 b5 c3 91 e2 80 9a c3 91 c5 92 20 c3 90 c2 b2 20 c3 90 c2 ba c3 90 c2 b0 c3 91 e2 80 a1 c3 90 c2 b5 c3 91 c2 81 c3 91 e2 80 9a c3 90 c2 b2 c3 90 c2 b5 20 56 49 50 2d c3 90 c2 bf c3 90 c2 b5 c3 91 e2 82 ac c3 91 c2 81 c3 90 c2 be c3 90 c2 bd c3 91 e2 80 b9 20 c3 90 c2 bd c3 90 c2 b0 20 c3 91 e2 80 9e c3 90 c2 be c3 91 e2 82 ac c3 91 c6 92 c3 90 c2 bc c3 90 c2 b5 3f 3c 2f 63 6f 64 65 3e 3c 2f 70 72 65 3e 0a 
