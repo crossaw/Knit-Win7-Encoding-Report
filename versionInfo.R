@@ -5,7 +5,7 @@
 # knit, so this script had to be written separately to be executed in the
 # console.
 
-verFile     <- "verInfo.csv"
+verFile     <- "versionInfo.csv"
 doneBefore  <- F
 gotVerFile  <- file.exists(verFile)
 packsNeeded <- readLines("packs.txt")

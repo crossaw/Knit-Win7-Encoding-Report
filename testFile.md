@@ -1,19 +1,14 @@
----
-title: "Test File for Encoding on Win7"
-author: "Arnold Cross"
-date: "2018-05-11"
-output: 
-  html_document: 
-    keep_md: yes
----
+# Test File for Encoding on Win7
+Arnold Cross  
+`r Sys.Date()`  
 
 
 
-OS: Windows 7 x64 (build 7601) SP 1
+OS: Windows 7 (build 7601) SP 1  32-bit
 
-R version 3.4.4 (2018-03-15)
+R version 3.4.0 (2017-04-21)
 
-Encoding Setting:  GB18030
+Encoding Setting:  [Ask]
 
 ## Introduction
 
@@ -58,7 +53,7 @@ Those bytes are the UTF-8 encodings of U+041A, U+043E, and U+0433, which corresp
 
 The text is pasted here for rendering:
 
-> 袣芯谐芯 袙褘 褏芯褌懈褌械 胁懈写械褌褜 胁 泻邪褔械褋褌胁械 VIP-锌械褉褋芯薪褘 薪邪 褎芯褉褍屑械?
+> 脨職脨戮脨鲁脨戮 脨聮脩聥 脩聟脨戮脩聜脨赂脩聜脨碌 脨虏脨赂脨麓脨碌脩聜脩聦 脨虏 脨潞脨掳脩聡脨碌脩聛脩聜脨虏脨碌 VIP-脨驴脨碌脩聙脩聛脨戮脨陆脩聥 脨陆脨掳 脩聞脨戮脩聙脩聝脨录脨碌?
 
 I will refer to that as the "PASTED TEXT", because I pasted it into this Rmd file.  You might not see Russian text above depending on the ENCODING SETTING under which this file was knitted and which output file (md or html) you are viewing.  If you are viewing the source Rmd file in RStudio, then what you see depends on the ENCODING SETTING at the time that you opened the file.
 
@@ -74,7 +69,7 @@ cat(russianText)
 ```
 
 ```
-## ÐšÐ¾Ð³Ð¾ Ð’Ñ‹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð²Ð¸Ð´ÐµÑ‚ÑŒ Ð² ÐºÐ°Ñ‡ÐµÑÑ‚Ð²Ðµ VIP-Ð¿ÐµÑ€ÑÐ¾Ð½Ñ‹ Ð½Ð° Ñ„Ð¾Ñ€ÑƒÐ¼Ðµ?
+## 脨<U+009A>脨戮脨鲁脨戮 脨<U+0092>脩<U+008B> 脩<U+0085>脨戮脩<U+0082>脨赂脩<U+0082>脨碌 脨虏脨赂脨麓脨碌脩<U+0082>脩<U+008C> 脨虏 脨潞脨掳脩<U+0087>脨碌脩聛脩<U+0082>脨虏脨碌 VIP-脨驴脨碌脩<U+0080>脩聛脨戮脨陆脩<U+008B> 脨陆脨掳 脩<U+0084>脨戮脩<U+0080>脩<U+0083>脨录脨碌?
 ```
 
 I refer to that as the "KNITTED TEXT", because it is generated when this file is knitted.  The report discusses how the KNITTED TEXT appears in the md and html files.
