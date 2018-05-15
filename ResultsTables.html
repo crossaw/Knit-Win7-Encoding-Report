@@ -5,7 +5,7 @@
   <meta name="description" content="xxx" />
   <title>Encoding Behavior Table</title>
   <style type="text/css">
-	  h3, h4      {      margin-top: 0         ; }
+	  h3, h4      {   margin-bottom: 0         ; }
 		table       { border-collapse: collapse  ; }
     th, td      {          border: 1px solid ;
 		                      padding: 5px       ; }
@@ -16,17 +16,75 @@
 	  .l   	      {      text-align: right     ; }
 	  td          {  vertical-align: top       ; 
 		                   text-align: center    ; }
-		th p        {     font-weight: normal    ;
+		th, p        {     font-weight: normal    ;
                            margin: 0         ; }
     caption     {      text-align: left      ;
 		                margin-bottom: 1.5em     ; }
   </style>
 </head>
 <body>
-  <h3>Encoding Analysis Table</h3>
-  <h4>by Arnold Cross<br />9 May 2018</h4>
+  <h3>Encoding Analysis Tables</h3>
+  <h4>by Arnold Cross<br />14 May 2018</h4>
+	<h4>Content</h4>
+	<p>These tables summarize how UTF-8 encoded Russian text is saved in the md and html files when an Rmd file is knitted in RStudio on Windows 7 with various values for the ENCODING SETTING.  The different tables (except the first one) present test results under different software configurations.  More explanation is contained in the report, <a href="https://github.com/crossaw/Knit-Win7-Encoding-Report"><i>knitr Encoding in RStudio on Win7</i></a>, at https://github.com/crossaw/Knit-Win7-Encoding-Report.</p>
+  <h4>Ideal</h4>
+  <table>
+    <caption>For perspective, this is what the results would be if RStudio and knitr were working as I would expect.</caption>
+	  <tr>
+		  <td class="corner" rowspan=2>Encoding Setting</td>
+		  <th class="h" colspan=3>PASTED TEXT<p>(pasted into the Rmd file)</p></th>
+		  <th class="h" colspan=2>KNITTED TEXT<p>(from a code chunk)</p></th>
+	  </tr><tr>
+		  <th class="h">RStudio</th>
+		  <th class="h">md</th>
+		  <th class="h">html</th>
+		  <th class="h">md</th>
+		  <th class="h">html</th>
+	  </tr><tr>
+		  <th class="l">[Ask]</th>
+		  <td>?</td>
+		  <td>?</td>
+		  <td>?</td>
+		  <td>?</td>
+		  <td>?</td>
+    </tr>
+	  </tr><tr>
+		  <th class="l">ISO8859-1</th>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
+    </tr>			
+	  </tr><tr>
+		  <th class="l">GB18030</th>
+		  <td>Chinese</td>
+		  <td>Chinese</td>
+		  <td>Chinese</td>
+		  <td>Chinese</td>
+		  <td>Chinese</td>
+    </tr>			
+	  </tr><tr>
+		  <th class="l">UTF-8</th>
+		  <td>CORRECT</td>
+		  <td>CORRECT</td>
+		  <td>CORRECT</td>
+		  <td>CORRECT</td>
+		  <td>CORRECT</td>
+    </tr>			
+	  </tr><tr>
+		  <th class="l">WINDOWS-1252</th>
+		  <td>win1252</td>
+		  <td>win1252</td>
+		  <td>win1252</td>
+		  <td>win1252</td>
+		  <td>win1252</td>
+    </tr>
+	</table>
+	<br />
+	<h4>Most Common Results</h4>
 	<table>
-  <caption>The following table shows how UTF-8 text is rendered in the md and html files when an Rmd file is knitted after being opened under various encoding settings in RStudio on Windows 7.  This table is a summary of a discussion in a report on github.</caption>
+    <caption>This table shows the results under most of the test configurations.  The specific configurations which produced these results are identified in the next table.</caption>
 	  <tr>
 		  <td class="corner" rowspan=2>Encoding Setting</td>
 		  <th class="h" colspan=3>PASTED TEXT<p>(pasted into the Rmd file)</p></th>
@@ -79,10 +137,48 @@
     </tr>
 	</table>
 	<br />
-	<br />
-	<br />
+  <h4>Configurations With Above Results</h4>
 	<table>
-  <caption>For perspective, the following is how I would expect the table to look if RStudio and knitr were working correctly.</caption>
+  <caption>In this table, the configurations which produced the above results are identified as "YES".  Configurations which were tested but produced different results are identified as "Different".  Configurations which were not tested are identified as "Not tested".  Impossible configurations are left blank.</caption>
+	  <tr>
+		  <td class="corner" rowspan=2></td>
+			<th class="h">64-bit Win7 Pro<p>(Dell E6430)</p></th>
+			<th class="h" colspan="2">32-bit Win7 Pro<p>(Dell E6410)</p></th>
+    </tr>
+	  <tr>
+		  <th class="h">RStudio<br />v1.1.442</th>
+		  <th class="h">RStudio<br />v1.1.442</th>
+		  <th class="h">RStudio<br />v1.1.383</th>
+    </tr>
+	  <tr>
+		  <th class="l">64-bit R v3.4.4</th>
+		  <td>YES</td>
+		  <td></td>
+		  <td></td>
+    </tr>
+	  <tr>
+		  <th class="l">32-bit R v3.4.4</th>
+		  <td>YES</td>
+		  <td>YES</td>
+		  <td>Not tested</td>
+    </tr>
+	  <tr>
+		  <th class="l">64-bit R v3.4.0</th>
+		  <td>YES</td>
+		  <td></td>
+		  <td></td>
+    </tr>
+	  <tr>
+		  <th class="l">32-bit R v3.4.0</th>
+		  <td>YES</td>
+		  <td>Different</td>
+		  <td>Different</td>
+    </tr>
+	</table>
+	<br />
+	<h4>32-bit Windows with R v3.4.0 and RStudio v1.1.442</h4>
+	<table>
+    <caption>This table shows the results on a Dell E6410 running 32-bit Windows 7 Pro with RStudio v1.1.442 set on R v3.4.0.</caption>
 	  <tr>
 		  <td class="corner" rowspan=2>Encoding Setting</td>
 		  <th class="h" colspan=3>PASTED TEXT<p>(pasted into the Rmd file)</p></th>
@@ -95,50 +191,49 @@
 		  <th class="h">html</th>
 	  </tr><tr>
 		  <th class="l">[Ask]</th>
-		  <td>?</td>
-		  <td>?</td>
-		  <td>?</td>
-		  <td>?</td>
-		  <td>?</td>
-    </tr>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
+		  <td>modified 8859-1</td>
+		  <td>ISO8859-1</td>
+		  <td>modified 8859-1</td>
+    </tr>			
 	  </tr><tr>
 		  <th class="l">ISO8859-1</th>
 		  <td>ISO8859-1</td>
 		  <td>ISO8859-1</td>
+		  <td>modified 8859-1</td>
 		  <td>ISO8859-1</td>
-		  <td>ISO8859-1</td>
-		  <td>ISO8859-1</td>
+		  <td>modified 8859-1</td>
     </tr>			
 	  </tr><tr>
 		  <th class="l">GB18030</th>
 		  <td>Chinese</td>
 		  <td>Chinese</td>
 		  <td>Chinese</td>
-		  <td>Chinese</td>
-		  <td>Chinese</td>
+		  <td>win1252</td>
+		  <td>win1252</td>
     </tr>			
 	  </tr><tr>
 		  <th class="l">UTF-8</th>
 		  <td>CORRECT</td>
 		  <td>CORRECT</td>
 		  <td>CORRECT</td>
-		  <td>CORRECT</td>
-		  <td>CORRECT</td>
+		  <td>ISO8859-1</td>
+		  <td>ISO8859-1</td>
     </tr>			
 	  </tr><tr>
 		  <th class="l">WINDOWS-1252</th>
 		  <td>win1252</td>
-		  <td>win1252</td>
-		  <td>win1252</td>
-		  <td>win1252</td>
-		  <td>win1252</td>
+		  <td>win1252 Twice</td>
+		  <td>win1252 Twice</td>
+		  <td>ISO8859-1,<br />then win1252</td>
+		  <td>ISO8859-1,<br />then win1252</td>
     </tr>
 	</table>
 	<br />
-	<br />
-	<br />
+	<h4>32-bit Windows with R v3.4.0 and RStudio v1.1.383</h4>
 	<table>
-  <caption>The following table shows how the text rendered when I tested on my 32-bit Windows 7 computer with R v3.4.0.</caption>
+  <caption>This table shows the results on a Dell E6410 running 32-bit Windows 7 Pro with RStudio v1.1.383 set on R v3.4.0.</caption>
 	  <tr>
 		  <td class="corner" rowspan=2>Encoding Setting</td>
 		  <th class="h" colspan=3>PASTED TEXT<p>(pasted into the Rmd file)</p></th>

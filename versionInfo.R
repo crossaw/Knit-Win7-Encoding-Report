@@ -14,7 +14,7 @@ if (!grepl("x64", os)) os <- sub("7,"          , "7, 32-bit", os           )
 os                        <- sub("Service Pack", "SP"       , os           )
 
 verData     <- c(Windows = os,
-                 R       = R.version.string,
+                 R       = sub("R version ", "", R.version.string),
                  RStudio = paste( RStudio.Version()$version, collapse="." ),
                  installed.packages(noCache=T)[packsNeeded,3]
                  )
