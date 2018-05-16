@@ -15,25 +15,25 @@ R version 3.4.4 (2018-03-15)
 
 Encoding Setting:  [Ask]  (This is identified manually and could be wrong if <setting.txt> wasn't updated prior to knitting.)
 
-## Introduction
+# Introduction
 
-### Purpose
+## Purpose
 
 This report presents a character encoding issue which I have experienced in Windows 7/RStudio/knitr.  The RStudio setting at issue is [Tools] ==> [Global Options] ==> [Code] ==> [Saving] ==> [Default text encoding].  I will call it the "ENCODING SETTING".  In RStudio, running on Windows 7, the output produced from the [Knit] button varies according to the ENCODING SETTING, and there is no setting which properly handles UTF-8 characters.  The purpose of this report is to describe and demonstrate the existing behavior in as much detail as I can, so R and RStudio developers may consider whether there is a way to improve it.
 
-### Delivery
+## Delivery
 
 This report is posted in a github repo.  The Readme file is the main report and is intended to be a complete presentation of the information.  All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked.
 
-### Conventions
+## Conventions
 
-#### Defined Terms
+### Defined Terms
 Terms with specific meanings that I define in this report are spelled with ALL CAPITAL LETTERS.
 
-#### File Names
+### File Names
 The names of files and folders are presented like |:file or folder name:|.  While writing most of this report, I was enclosing them in angle brackets, until I determined that angle brackets didn't work well.  There might be some that I failed to update after I changed the convention.
 
-## Demonstration
+# Demonstration
 
 The text that I use for this demonstration is shown here with a graphic, so you can see what it is supposed to look like.
 
@@ -53,7 +53,7 @@ cat( Encoding(russianText) )
 
 R considers the encoding of the file to be unknown, but I can confirm with the following code chunk that it is UTF-8.
 
-### Starting Bytes
+## Starting Bytes
 
 
 ```r
@@ -80,17 +80,15 @@ I executed it by entering the following line in a command window.
 
 The file, |:inBytes.txt:|, shows the same result that I get above from charToRaw().  The substr() function asks for six elements, and R delivers six bytes, indicating that R, at least in substr(), does not attempt to resolve the bit sequence into characters.  This is true regardless of the ENCODING SETTING.
 
-### Pasted Text
+## Pasted Text
 
 The text is pasted here for rendering:
 
 > Кого Вы хотите видеть в качестве VIP-персоны на форуме?
 
-I will refer to that as the "PASTED TEXT", because I pasted it into this Rmd file.  You might not see Russian text above depending on the ENCODING SETTING under which this file was knitted and which output file (md or html) you are viewing.  If you are viewing the source Rmd file in RStudio, then what you see depends on the ENCODING SETTING at the time that you opened the file.
+I will refer to that as the "PASTED TEXT", because I pasted it into this Rmd file.  You might not see Russian text above depending on the ENCODING SETTING under which this file was knitted and which output file (md or html) you are viewing.  If you are viewing the source Rmd file in RStudio, then what you see depends on the ENCODING SETTING at the time that you opened the file.  When the [Knit] button is clicked in RStudio to knit this Rmd file, an md file and an html file are produced.  This report will discuss how the PASTED TEXT appears in those files as well as how it appears in RStudio.
 
-When the [Knit] button is clicked in RStudio to knit this Rmd file, an md file and an html file are produced.  This report will discuss how the PASTED TEXT appears in those files as well as how it appears in RStudio.
-
-### Knitted Text
+## Knitted Text
 
 The following code chunk renders the same text from the execution environment.
 
@@ -105,31 +103,29 @@ cat(russianText)
 
 I will refer to that as the "KNITTED TEXT", because it is generated when this file is knitted.  This report will discuss how the KNITTED TEXT appears in the md and html files.
 
-### Sample Files
+## Sample Files
 
 The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING.  In this report I use graphics to show the results obtained from those tests.  I also have in the github repo a folder called |:Samples:| which contains the md and html files.  For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report.  It basically contains the Pasted Text and Knitted Text sections of this report.  After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.
 
-### Encoding Setting
+## Encoding Setting
 
 The ENCODING SETTING is accessed in RStudio from the [Global Options...] item on the [Tools] menu, which brings up the Global Options window.  The [Code] selection in the navigation panel presents a tabbed page.  The [Saving] tab has a field called "Default text encoding" with a [Change...] button.  That field is the ENCODING SETTING.
 
-#### Activating
+### Activating
 
 Clicking [Change...] brings up the Choose Encoding pop-up which lists various encoding standards and allows one to be selected.  Clicking [OK] returns the user to the Global Options window with the selected encoding in the Default text encoding field.  The Global Options window has three buttons:  [OK], [Cancel], and [Apply].  The new ENCODING SETTING can be activated with a click of the [OK] button, which closes the Global Options window, or a click of the [Apply] button, which activates the new setting without closing the window.  Note that I say it "activates" the setting, not that it "applies" the setting.  [OK] and [Apply] do not apply the ENCODING SETTING to any open Rmd file.  They only activate it, meaning that it will be applied to any subsequently opened Rmd file.
 
-#### Applying
+### Applying
 
-The ENCODING SETTING applies at the time that the Rmd file is opened.  Changing it does not change the way this Rmd file appears in RStudio nor how it knits until the file is closed and reopened.  Several Rmd files can be opened under different encoding settings, and each one will render according to the ENCODING SETTING at the time it was loaded.
+The ENCODING SETTING applies at the time that the Rmd file is opened.  Changing it does not change the way this Rmd file appears in RStudio nor how it knits until the file is closed and reopened.  Several Rmd files can be opened under different encoding settings, and each one will render according to the ENCODING SETTING at the time it was loaded.  Although the ENCODING SETTING is on the [Code] ==> [Saving] tab, it influences how this Rmd file is loaded, not how it is saved.  I confirmed that by opening this file under different ENCODING SETTINGS.  The rendering changes with the ENCODING SETTING despite no change in the file.  Also, if I do change and resave this Rmd file, the subsequent rendering of the PASTED TEXT does not change regardless of which ENCODING SETTING the Rmd file was saved under.
 
-Although the ENCODING SETTING is on the [Code] ==> [Saving] tab, it influences how this Rmd file is loaded, not how it is saved.  I confirmed that by opening this file under different ENCODING SETTINGS.  The rendering changes with the ENCODING SETTING despite no change in the file.  Also, if I do change and resave this Rmd file, the subsequent rendering of the pasted text does not change regardless of which ENCODING SETTING the Rmd file is saved under.
+### Odd Button Behavior
 
-#### Odd Button Behavior
+I ran into an odd RStudio behavior which is not a subject of this report, but it is worth describing.  When RStudio is first opened, the ENCODING SETTING can be changed, and the Global Options [OK] button works as expected.  If a file is knitted, the button still works as long as the html output window remains open.  Once the output window is closed, the [OK] button only works if the ENCODING SETTING is not changed.  [OK] still works on the Choose Encoding pop-up, which only submits the change to the Global Options window, but it does not work on the Global Options window, which is what activates the change.  A new encoding can be activated by clicking [Apply] and [Cancel], but then it is not retained when RStudio is shut down and restarted.  If a file is knitted again, then the [OK] button starts working again for as long as the new html output window remains open.
 
-I ran into an odd RStudio behavior which is not a subject of this report, but it is worth describing.  When RStudio is first opened, the ENCODING SETTING can be changed, and the Global Options [OK] button works as expected.  If a file is knitted, the button still works as long as the html output window remains open.  Once the output window is closed, the [OK] button only works if the ENCODING SETTING is not changed.  [OK] still works on the Choose Encoding pop-up, which only submits the change to the Global Options window, but it does not work on the Global Options window, which is what executes the change.  A new encoding can be activated by clicking [Apply] and [Cancel], but then it is not retained when RStudio is shut down and restarted.  If a file is knitted again, then the [OK] button starts working again for as long as the new html output window remains open.
+# Findings
 
-## Findings
-
-### Settings Tested
+## Settings Tested
 
 I experimented with the following ENCODING SETTINGS.
 
@@ -315,44 +311,9 @@ The byte sequence of the KNITTED TEXT in the html file is the UTF-8 encoding of 
 
 Although I have described plausible ways that both the PASTED TEXT and the KNITTED TEXT of the html file could be generated from the md file, they involve different interpretations of the md file.  It is more likely that knitr produces the html file directly, passing the PASTED TEXT from the RStudio editor and passing the KNITTED TEXT from its execution environment.
 
-### Other R Versions
+## Other R Versions
 
 The version of R used by RStudio can be selected at [Tools] ==> [Global Options] ==> [General] ==> [R version:].  All the work reported above was done with 64-bit R v3.4.4.  I also tested all the ENCODING SETTINGS with 32-bit R v3.4.4, 64-bit R v3.4.0, and 32-bit R v3.4.0.  The results were identical to what is reported above.  In R v3.4.0 all the packages had the same version as in R v3.4.4 except the base packages, which follow the R version number.  In R v3.4.4, the 32-bit and 64-bit builds share the same library.
-
-## Computer Configuration
-
-For any given knit, the Windows version and R version are noted at the top of this report and at the top of each Sample file.  The code chunk below was written to record that information, plus the RStudio version and the versions of all the packages that I determined to be required for these experiments.
-
-
-```r
-verFile     <- "versionInfo.csv"
-```
-
-```r
-doneBefore  <- F
-gotVerFile  <- file.exists(verFile)
-packsNeeded <- readLines("packs.txt")
-os                        <- sub("Windows 7"   , "7,"       , win.version())
-if (!grepl("x64", os)) os <- sub("7,"          , "7, 32-bit", os           )
-os                        <- sub("Service Pack", "SP"       , os           )
-verData     <- c(Windows = os,
-                 R       = sub("R version ", "", R.version.string),
-                 RStudio = paste( RStudio.Version()$version, collapse="." ),
-                 installed.packages(noCache=T)[packsNeeded,3]
-                 )
-if ( gotVerFile ) {
-   savedVerDat <- read.table(verFile, sep=",", row.names=1, colClasses="character")
-   for ( i in 1:ncol(savedVerDat) ) {
-      doneBefore <- doneBefore | all(verData==savedVerDat[,i])
-   }
-}
-if (!doneBefore) {
-   newVerDat <- if (gotVerFile) cbind(savedVerDat, verData) else verData
-   write.table(newVerDat, verFile, sep=",", col.names=F)
-}
-```
-
-Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, <versionInfo.csv>, which you can open to see the version information for each configuration that I tested.
 
 ## On 32-bit Windows 7
 
@@ -366,7 +327,7 @@ With RStudio v1.1.442 and R v3.3.4, I got the same results as on the 64-bit Wind
 
 With R switched to R v3.4.0 on the 32-bit win7 machine, I was surprised to find that I got different results.  The following sections describe what each ENCODING SETTING gave me on 32-bit Windows 7 Pro, RStudio v1.1.442, R v3.4.0.  In each case, the text in RStudio rendered according to the ENCODING SETTING, so I will only address the results in the knitr output files.
 
-### ISO-8859-1 on 32-bit win7 with R v3.4.0
+#### ISO-8859-1 on 32-bit win7 with R v3.4.0
 
 The PASTED TEXT looked like an ISO-8859-1 interpretation in both the md file and the html file.
 
@@ -396,7 +357,7 @@ html file:
 
 The results with the ENCODING SETTING on [Ask] were identical to the ISO-8859-1 results.
 
-### WINDOWS-1252 on 32-bit win7 with R v3.4.0
+#### WINDOWS-1252 on 32-bit win7 with R v3.4.0
 
 The PASTED TEXT looks like this in the md file:
 
@@ -438,11 +399,11 @@ If the UTF-8 encoded Russian text is interpreted as ISO-8859-1 and converted to 
 
 That matches the second and third displayed characters in the KNITTED TEXT, and the rest of the characters are identical to their couterparts in the PASTED TEXT.  So, it seems that the KNITTED TEXT is interpreted as ISO-8859-1, then encoded in UTF-8 for passing between two processes, but interpreted by the receiving process as Windows-1252 text, and converted to UTF-8 for output to the md and html files.
 
-### UTF-8 on 32-bit win7 with R v3.4.0
+#### UTF-8 on 32-bit win7 with R v3.4.0
 
 The PASTED TEXT was correctly encoded as Russian characters in both the md and html files.  The KNITTED TEXT is interpreted as ISO-8859-1 for both files.  The rendering and analysis of ISO-8859-1 interpretted text is shown and discussed above, so that discussion will not be repeated here.
 
-### GB10830 on 32-bit win7 with R v3.4.0
+#### GB10830 on 32-bit win7 with R v3.4.0
 
 The html file is identical to what is produced under R v3.4.4, but the md file is different.  In the md file, the PASTED TEXT renders as Chinese characters,
 
@@ -455,6 +416,41 @@ Visual inspection of the files and comparison of the byte sequences show that bo
 ### RStudio v1.1.383
 
 When I initially ran my 32-bit Windows tests, it was with RStudio v1.1.383 and R v3.4.0.  All ENCODING SETTINGS gave the same results as the ISO-8859-1 setting with RStudio v1.1.442 and R v3.4.0.  Getting all identical results indicated that the ENCODING SETTINGS was not yet implemented in RStudio v1.1.383.  I figure that does not say much about on how knitr now handles encoding, with the setting implemented, so that information is probably not very useful.
+
+## Computer Configuration
+
+For any given knit, the Windows version and R version are noted at the top of this report and at the top of each Sample file.  The code chunk below was written to record that information, plus the RStudio version and the versions of all the packages that I determined to be required for these experiments.
+
+
+```r
+verFile     <- "versionInfo.csv"
+```
+
+```r
+doneBefore  <- F
+gotVerFile  <- file.exists(verFile)
+packsNeeded <- readLines("packs.txt")
+os                        <- sub("Windows 7"   , "7,"       , win.version())
+if (!grepl("x64", os)) os <- sub("7,"          , "7, 32-bit", os           )
+os                        <- sub("Service Pack", "SP"       , os           )
+verData     <- c(Windows = os,
+                 R       = sub("R version ", "", R.version.string),
+                 RStudio = paste( RStudio.Version()$version, collapse="." ),
+                 installed.packages(noCache=T)[packsNeeded,3]
+                 )
+if ( gotVerFile ) {
+   savedVerDat <- read.table(verFile, sep=",", row.names=1, colClasses="character")
+   for ( i in 1:ncol(savedVerDat) ) {
+      doneBefore <- doneBefore | all(verData==savedVerDat[,i])
+   }
+}
+if (!doneBefore) {
+   newVerDat <- if (gotVerFile) cbind(savedVerDat, verData) else verData
+   write.table(newVerDat, verFile, sep=",", col.names=F)
+}
+```
+
+Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, <versionInfo.csv>, which you can open to see the version information for each configuration that I tested.
 
 ## Pandoc
 
@@ -478,22 +474,33 @@ The html file created by command-line pandoc is much different from what the [Kn
 
 ## Summary
 
-I made a table on a [separate html page](ResultsTable.html) which summarizes the results discussed above.
+I wrote a [separate html file](ResultsTable.html), ResultsTable.html, with tables that summarize the results.  In this summary, I will disregard the results with RStudio v1.1.383, since that just seems to default the behavior to the ISO-8859-1 setting.
 
-Text that is pasted into RStudio is rendered in the editior panel of RStudio according to the ENCODING SETTING.
+### RStudio Display
 
-### Upon Knitting
-#### Pasted Text in the md File
+Text that is pasted into the Rmd file is always rendered in the editior panel of RStudio v1.1.442 according to the ENCODING SETTING.
 
-Text of the Rmd file is copied as-is to the md file under most of the ENCODING SETTINGS that I tested.  GB18030 is the exception.  It seems to assume that the Rmd file is encoded in Windows-1252, so it converts the text.  The md file always seems to be encoded in UTF-8.
+### Most Common Results
 
-#### Knitted Text in the md File
+In the knitted output files, all of the R versions had the same results on the 64-bit Windows machine.  Under the Windows oriented ENCODING SETTINGS, ISO-8859-1 and WINDOWS-1252 the text was treated identically whether it originated from the Rmd file or was read into the execution environment by R code.  The differences were between the two output files.  The text was passed to the md file as-is, whereas it was converted according to the ENCODING SETTING for the html file.  With the UTF-8 setting, the text was treated identically across the two files, but differently according to its source.  The text from the Rmd file was unchanged, while the read-in text was interpreted as Windows-1252 text.  With the GB18030 setting, all text was interpreted as Windows-1252 except when sourced from the Rmd file for html output, in which case it was interpreted as GB18030.  Additionally, the text read into the execution environment was converted to something other than UTF-8 (probably GB18030) for the md file.
 
-Text which is generated in the R code and flagged as "unknown" encoding is passed through as-is to the md file under the ISO and Windows ENCODING SETTINGS.  If the ENCODING SETTING is UTF-8, then knitr assumes that the workspace strings are in Windows-1252, and knitr converts them to UTF-8.  If the ENCODING SETTING is GB18030, then the workspace strings are converted in a way that is different from or in addition to the conversion that is done for Rmd file text.  I did not try to figure out what sequence of conversions could produce the observed bit sequence, but it seems that there must be at least two conversions taking place to turn the original UTF-8 characters into eight-byte sequences.  It is interesting that in all other results from this testing, R has consitently generated UTF-8 output, regardless of what it thought it held in memory.  In the case of workspace output to an md file under the GB18030 ENCODING SETTING, R writes bit sequences which are not valid UTF-8 characters.
+### R v3.4.0 on 32-bit Windows
 
-#### HTML Output
+When I tested with R v3.4.0 on the 32-bit Windows I got different results, but the R and Windows configuration was not the only difference.  The following nine packages were at older versions.
 
-I'm pretty sure that I read somewhere that knitr generates the html output from the md file.  My results pretty much support that claim.  Under the UTF-8 ENCODING SETTING, everything seems to be passed to the html file as it is in the md file.  Under the ISO and Windows settings, the md file is assumed to be whatever the ENCODING SETTING is, and it gets converted to UTF-8 for the html file.  Once again, GB18030 is the exception.  As I discuss above, the PASTED TEXT is interpreted as Windows-1252 and is converted to a UTF-8 encoding for the md file.  It then shows up as Chinese characters in the html file.
+* backports
+* digest
+* knitr
+* Rcpp
+* rmarkdown
+* rprojroot
+* stringi
+* stringr
+* yaml
+
+Of course, problem reports should not be done with old packages, but I am not so much trying to report a problem as trying to provide clues for solving a problem that is well known to have existed for a long time.  With that in mind, the differences between the old an new behavior may be instructive.
+
+With the ISO-8859-1 setting, the text was always interpreted as ISO-8859-1, but it was converted to UTF-8 in different ways for the two files.  The md file just had a straight conversion, whereas control codes were transformed into human readable tags for the html file.  With the other settings, the output depended on the source of the text.  The text from the Rmd file was interpreted according to the ENCODING SETTING.  The read-in text was interpreted as Windows-1252 under the GB18030 setting and as ISO-8859-1 under the UTF-8 and WINDOWS-1252 settings.  Additionally, with the WINDOWS-1252 setting, all text (both from the Rmd file and read-in) was internally converted to UTF-8, then interpreted again as Windows-1252 before being converted to UTF-8 for output.
 
 ## Conclusion
 
@@ -506,3 +513,11 @@ Searching on-line, I found there have been many discussions on stackoverflow and
 ### My Speculation
 
 I get the impression that about ten years ago there was a battle raging between the open source community and Microsoft over who could create the best standard for encoding all of the world's characters.  Apparently Microsoft resisted incorporating UTF-8 support in Windows, so software developers had to come up with all kinds of work-arounds to make their code handle UTF-8 characters in Windows 7.  I'm wondering if, over the years, Microsoft has discretely capitulated and has quietly changed Windows 7 through the weekly background updates.  I'm thinking that without openly supporting UTF-8, the Windows 7 shell perhaps allows characters to pass through in ways that it originally did not.  This could have made many of those work-arounds unnecessary.  It could be that the work-arounds themselves are now causing problems due to changes in Windows 7.  I say this because the behavior I describe in this report strikes me as a problem of R doing things that it does not need to do rather than a problem of R failing to do something that it should do.  I'm wondering if the solution may involve simply removing code from certain packages which was added five or six years ago in order to deal with problems that existed at that time.
+
+### Further Work
+
+I will do more testing to see which of the nine packages influences the encoding behavior.  Also, I see that R v3.5.0 was released shortly after I started working on this report.  I will need to test with that and see if things are any better.  Those tests will have to wait, though, because I have other things to do.  I will update this report on github whenever I do additional testing.
+
+### Linux
+
+I've been wanting to switch to Linux for over a decade but just haven't gotten around to it.  Perhaps it is time to make the leap.  In the time it took me to write this report, I could have become a Linux master.

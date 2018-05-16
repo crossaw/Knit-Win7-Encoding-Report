@@ -129,30 +129,30 @@ $(document).ready(function () {
 <p>OS: Windows 7 x64 (build 7601) SP 1</p>
 <p>R version 3.4.4 (2018-03-15)</p>
 <p>Encoding Setting: [Ask] (This is identified manually and could be wrong if &lt;setting.txt&gt; wasn’t updated prior to knitting.)</p>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<div id="purpose" class="section level3">
-<h3>Purpose</h3>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="purpose" class="section level2">
+<h2>Purpose</h2>
 <p>This report presents a character encoding issue which I have experienced in Windows 7/RStudio/knitr. The RStudio setting at issue is [Tools] ==&gt; [Global Options] ==&gt; [Code] ==&gt; [Saving] ==&gt; [Default text encoding]. I will call it the “ENCODING SETTING”. In RStudio, running on Windows 7, the output produced from the [Knit] button varies according to the ENCODING SETTING, and there is no setting which properly handles UTF-8 characters. The purpose of this report is to describe and demonstrate the existing behavior in as much detail as I can, so R and RStudio developers may consider whether there is a way to improve it.</p>
 </div>
-<div id="delivery" class="section level3">
-<h3>Delivery</h3>
+<div id="delivery" class="section level2">
+<h2>Delivery</h2>
 <p>This report is posted in a github repo. The Readme file is the main report and is intended to be a complete presentation of the information. All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked.</p>
 </div>
-<div id="conventions" class="section level3">
-<h3>Conventions</h3>
-<div id="defined-terms" class="section level4">
-<h4>Defined Terms</h4>
+<div id="conventions" class="section level2">
+<h2>Conventions</h2>
+<div id="defined-terms" class="section level3">
+<h3>Defined Terms</h3>
 <p>Terms with specific meanings that I define in this report are spelled with ALL CAPITAL LETTERS.</p>
 </div>
-<div id="file-names" class="section level4">
-<h4>File Names</h4>
+<div id="file-names" class="section level3">
+<h3>File Names</h3>
 <p>The names of files and folders are presented like |:file or folder name:|. While writing most of this report, I was enclosing them in angle brackets, until I determined that angle brackets didn’t work well. There might be some that I failed to update after I changed the convention.</p>
 </div>
 </div>
 </div>
-<div id="demonstration" class="section level2">
-<h2>Demonstration</h2>
+<div id="demonstration" class="section level1">
+<h1>Demonstration</h1>
 <p>The text that I use for this demonstration is shown here with a graphic, so you can see what it is supposed to look like.</p>
 <div class="figure">
 <img src="data:image/png;base64,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" />
@@ -163,8 +163,8 @@ $(document).ready(function () {
 cat( Encoding(russianText) )</code></pre>
 <pre><code>## unknown</code></pre>
 <p>R considers the encoding of the file to be unknown, but I can confirm with the following code chunk that it is UTF-8.</p>
-<div id="starting-bytes" class="section level3">
-<h3>Starting Bytes</h3>
+<div id="starting-bytes" class="section level2">
+<h2>Starting Bytes</h2>
 <pre class="r"><code>cat( charToRaw(substr( russianText, 1, 6 )) )</code></pre>
 <pre><code>## d0 9a d0 be d0 b3</code></pre>
 <p>Those bytes are the UTF-8 encodings of U+041A, U+043E, and U+0433, which correspond to the first three letters in my Russian text. I will refer to them as the “STARTING BYTES”. They are always d0 9a d0 be d0 b3 regardless of the ENCODING SETTING. The decoding scheme is presented in section 3 of <a href="https://tools.ietf.org/html/rfc3629">RFC 3629</a>. Just to be sure that readLines() isn’t converting the text, I wrote the following perl script to inspect the bytes.</p>
@@ -177,48 +177,46 @@ while (&lt;&gt;) {
 <p><code>perl byteInspect.pl input.txt &gt; bytes/inBytes.txt</code></p>
 <p>The file, |:inBytes.txt:|, shows the same result that I get above from charToRaw(). The substr() function asks for six elements, and R delivers six bytes, indicating that R, at least in substr(), does not attempt to resolve the bit sequence into characters. This is true regardless of the ENCODING SETTING.</p>
 </div>
-<div id="pasted-text" class="section level3">
-<h3>Pasted Text</h3>
+<div id="pasted-text" class="section level2">
+<h2>Pasted Text</h2>
 <p>The text is pasted here for rendering:</p>
 <blockquote>
 <p>ÐÐ¾Ð³Ð¾ ÐÑ ÑÐ¾ÑÐ¸ÑÐµ Ð²Ð¸Ð´ÐµÑÑ Ð² ÐºÐ°ÑÐµÑÑÐ²Ðµ VIP-Ð¿ÐµÑÑÐ¾Ð½Ñ Ð½Ð° ÑÐ¾ÑÑÐ¼Ðµ?</p>
 </blockquote>
-<p>I will refer to that as the “PASTED TEXT”, because I pasted it into this Rmd file. You might not see Russian text above depending on the ENCODING SETTING under which this file was knitted and which output file (md or html) you are viewing. If you are viewing the source Rmd file in RStudio, then what you see depends on the ENCODING SETTING at the time that you opened the file.</p>
-<p>When the [Knit] button is clicked in RStudio to knit this Rmd file, an md file and an html file are produced. This report will discuss how the PASTED TEXT appears in those files as well as how it appears in RStudio.</p>
+<p>I will refer to that as the “PASTED TEXT”, because I pasted it into this Rmd file. You might not see Russian text above depending on the ENCODING SETTING under which this file was knitted and which output file (md or html) you are viewing. If you are viewing the source Rmd file in RStudio, then what you see depends on the ENCODING SETTING at the time that you opened the file. When the [Knit] button is clicked in RStudio to knit this Rmd file, an md file and an html file are produced. This report will discuss how the PASTED TEXT appears in those files as well as how it appears in RStudio.</p>
 </div>
-<div id="knitted-text" class="section level3">
-<h3>Knitted Text</h3>
+<div id="knitted-text" class="section level2">
+<h2>Knitted Text</h2>
 <p>The following code chunk renders the same text from the execution environment.</p>
 <pre class="r"><code>cat(russianText)</code></pre>
 <pre><code>## ÐÐ¾Ð³Ð¾ ÐÑ ÑÐ¾ÑÐ¸ÑÐµ Ð²Ð¸Ð´ÐµÑÑ Ð² ÐºÐ°ÑÐµÑÑÐ²Ðµ VIP-Ð¿ÐµÑÑÐ¾Ð½Ñ Ð½Ð° ÑÐ¾ÑÑÐ¼Ðµ?</code></pre>
 <p>I will refer to that as the “KNITTED TEXT”, because it is generated when this file is knitted. This report will discuss how the KNITTED TEXT appears in the md and html files.</p>
 </div>
-<div id="sample-files" class="section level3">
-<h3>Sample Files</h3>
+<div id="sample-files" class="section level2">
+<h2>Sample Files</h2>
 <p>The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING. In this report I use graphics to show the results obtained from those tests. I also have in the github repo a folder called |:Samples:| which contains the md and html files. For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report. It basically contains the Pasted Text and Knitted Text sections of this report. After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.</p>
 </div>
-<div id="encoding-setting" class="section level3">
-<h3>Encoding Setting</h3>
+<div id="encoding-setting" class="section level2">
+<h2>Encoding Setting</h2>
 <p>The ENCODING SETTING is accessed in RStudio from the [Global Options…] item on the [Tools] menu, which brings up the Global Options window. The [Code] selection in the navigation panel presents a tabbed page. The [Saving] tab has a field called “Default text encoding” with a [Change…] button. That field is the ENCODING SETTING.</p>
-<div id="activating" class="section level4">
-<h4>Activating</h4>
+<div id="activating" class="section level3">
+<h3>Activating</h3>
 <p>Clicking [Change…] brings up the Choose Encoding pop-up which lists various encoding standards and allows one to be selected. Clicking [OK] returns the user to the Global Options window with the selected encoding in the Default text encoding field. The Global Options window has three buttons: [OK], [Cancel], and [Apply]. The new ENCODING SETTING can be activated with a click of the [OK] button, which closes the Global Options window, or a click of the [Apply] button, which activates the new setting without closing the window. Note that I say it “activates” the setting, not that it “applies” the setting. [OK] and [Apply] do not apply the ENCODING SETTING to any open Rmd file. They only activate it, meaning that it will be applied to any subsequently opened Rmd file.</p>
 </div>
-<div id="applying" class="section level4">
-<h4>Applying</h4>
-<p>The ENCODING SETTING applies at the time that the Rmd file is opened. Changing it does not change the way this Rmd file appears in RStudio nor how it knits until the file is closed and reopened. Several Rmd files can be opened under different encoding settings, and each one will render according to the ENCODING SETTING at the time it was loaded.</p>
-<p>Although the ENCODING SETTING is on the [Code] ==&gt; [Saving] tab, it influences how this Rmd file is loaded, not how it is saved. I confirmed that by opening this file under different ENCODING SETTINGS. The rendering changes with the ENCODING SETTING despite no change in the file. Also, if I do change and resave this Rmd file, the subsequent rendering of the pasted text does not change regardless of which ENCODING SETTING the Rmd file is saved under.</p>
+<div id="applying" class="section level3">
+<h3>Applying</h3>
+<p>The ENCODING SETTING applies at the time that the Rmd file is opened. Changing it does not change the way this Rmd file appears in RStudio nor how it knits until the file is closed and reopened. Several Rmd files can be opened under different encoding settings, and each one will render according to the ENCODING SETTING at the time it was loaded. Although the ENCODING SETTING is on the [Code] ==&gt; [Saving] tab, it influences how this Rmd file is loaded, not how it is saved. I confirmed that by opening this file under different ENCODING SETTINGS. The rendering changes with the ENCODING SETTING despite no change in the file. Also, if I do change and resave this Rmd file, the subsequent rendering of the PASTED TEXT does not change regardless of which ENCODING SETTING the Rmd file was saved under.</p>
 </div>
-<div id="odd-button-behavior" class="section level4">
-<h4>Odd Button Behavior</h4>
-<p>I ran into an odd RStudio behavior which is not a subject of this report, but it is worth describing. When RStudio is first opened, the ENCODING SETTING can be changed, and the Global Options [OK] button works as expected. If a file is knitted, the button still works as long as the html output window remains open. Once the output window is closed, the [OK] button only works if the ENCODING SETTING is not changed. [OK] still works on the Choose Encoding pop-up, which only submits the change to the Global Options window, but it does not work on the Global Options window, which is what executes the change. A new encoding can be activated by clicking [Apply] and [Cancel], but then it is not retained when RStudio is shut down and restarted. If a file is knitted again, then the [OK] button starts working again for as long as the new html output window remains open.</p>
-</div>
+<div id="odd-button-behavior" class="section level3">
+<h3>Odd Button Behavior</h3>
+<p>I ran into an odd RStudio behavior which is not a subject of this report, but it is worth describing. When RStudio is first opened, the ENCODING SETTING can be changed, and the Global Options [OK] button works as expected. If a file is knitted, the button still works as long as the html output window remains open. Once the output window is closed, the [OK] button only works if the ENCODING SETTING is not changed. [OK] still works on the Choose Encoding pop-up, which only submits the change to the Global Options window, but it does not work on the Global Options window, which is what activates the change. A new encoding can be activated by clicking [Apply] and [Cancel], but then it is not retained when RStudio is shut down and restarted. If a file is knitted again, then the [OK] button starts working again for as long as the new html output window remains open.</p>
 </div>
 </div>
-<div id="findings" class="section level2">
-<h2>Findings</h2>
-<div id="settings-tested" class="section level3">
-<h3>Settings Tested</h3>
+</div>
+<div id="findings" class="section level1">
+<h1>Findings</h1>
+<div id="settings-tested" class="section level2">
+<h2>Settings Tested</h2>
 <p>I experimented with the following ENCODING SETTINGS.</p>
 <ul>
 <li>[Ask]</li>
@@ -228,7 +226,6 @@ while (&lt;&gt;) {
 <li>WINDOWS-1252</li>
 </ul>
 <p>I also tried BIG5, but the Rmd file would not even fully load under that setting.</p>
-</div>
 <div id="iso-8859-1" class="section level3">
 <h3>ISO-8859-1</h3>
 <p>Results under [Ask] are identical to the results under ISO-8859-1 (System default). I will refer to both of those settings as ISO-8859-1. The user is never asked to identify the encoding. I suppose [Ask] means to ask the shell, not the user. This is the default setting when RStudio is installed, so it was the first that I tested.</p>
@@ -401,37 +398,10 @@ while (&lt;&gt;) {
 <p>Although I have described plausible ways that both the PASTED TEXT and the KNITTED TEXT of the html file could be generated from the md file, they involve different interpretations of the md file. It is more likely that knitr produces the html file directly, passing the PASTED TEXT from the RStudio editor and passing the KNITTED TEXT from its execution environment.</p>
 </div>
 </div>
-<div id="other-r-versions" class="section level3">
-<h3>Other R Versions</h3>
+</div>
+<div id="other-r-versions" class="section level2">
+<h2>Other R Versions</h2>
 <p>The version of R used by RStudio can be selected at [Tools] ==&gt; [Global Options] ==&gt; [General] ==&gt; [R version:]. All the work reported above was done with 64-bit R v3.4.4. I also tested all the ENCODING SETTINGS with 32-bit R v3.4.4, 64-bit R v3.4.0, and 32-bit R v3.4.0. The results were identical to what is reported above. In R v3.4.0 all the packages had the same version as in R v3.4.4 except the base packages, which follow the R version number. In R v3.4.4, the 32-bit and 64-bit builds share the same library.</p>
-</div>
-</div>
-<div id="computer-configuration" class="section level2">
-<h2>Computer Configuration</h2>
-<p>For any given knit, the Windows version and R version are noted at the top of this report and at the top of each Sample file. The code chunk below was written to record that information, plus the RStudio version and the versions of all the packages that I determined to be required for these experiments.</p>
-<pre class="r"><code>verFile     &lt;- &quot;versionInfo.csv&quot;</code></pre>
-<pre class="r"><code>doneBefore  &lt;- F
-gotVerFile  &lt;- file.exists(verFile)
-packsNeeded &lt;- readLines(&quot;packs.txt&quot;)
-os                        &lt;- sub(&quot;Windows 7&quot;   , &quot;7,&quot;       , win.version())
-if (!grepl(&quot;x64&quot;, os)) os &lt;- sub(&quot;7,&quot;          , &quot;7, 32-bit&quot;, os           )
-os                        &lt;- sub(&quot;Service Pack&quot;, &quot;SP&quot;       , os           )
-verData     &lt;- c(Windows = os,
-                 R       = sub(&quot;R version &quot;, &quot;&quot;, R.version.string),
-                 RStudio = paste( RStudio.Version()$version, collapse=&quot;.&quot; ),
-                 installed.packages(noCache=T)[packsNeeded,3]
-                 )
-if ( gotVerFile ) {
-   savedVerDat &lt;- read.table(verFile, sep=&quot;,&quot;, row.names=1, colClasses=&quot;character&quot;)
-   for ( i in 1:ncol(savedVerDat) ) {
-      doneBefore &lt;- doneBefore | all(verData==savedVerDat[,i])
-   }
-}
-if (!doneBefore) {
-   newVerDat &lt;- if (gotVerFile) cbind(savedVerDat, verData) else verData
-   write.table(newVerDat, verFile, sep=&quot;,&quot;, col.names=F)
-}</code></pre>
-<p>Unfortunately, that code chunk will not knit. RStudio.Version() executes fine in the RStudio console, but it fails when knitted. So, the chunk above has <code>eval=FALSE</code>, and I put the same code into a separate .R file, which I execute in the console with <code>source(&quot;versionInfo.R&quot;)</code>. It saves a file, &lt;versionInfo.csv&gt;, which you can open to see the version information for each configuration that I tested.</p>
 </div>
 <div id="on-32-bit-windows-7" class="section level2">
 <h2>On 32-bit Windows 7</h2>
@@ -443,9 +413,8 @@ if (!doneBefore) {
 <div id="rstudio-v1.1.442-and-r-v3.4.0" class="section level3">
 <h3>RStudio v1.1.442 and R v3.4.0</h3>
 <p>With R switched to R v3.4.0 on the 32-bit win7 machine, I was surprised to find that I got different results. The following sections describe what each ENCODING SETTING gave me on 32-bit Windows 7 Pro, RStudio v1.1.442, R v3.4.0. In each case, the text in RStudio rendered according to the ENCODING SETTING, so I will only address the results in the knitr output files.</p>
-</div>
-<div id="iso-8859-1-on-32-bit-win7-with-r-v3.4.0" class="section level3">
-<h3>ISO-8859-1 on 32-bit win7 with R v3.4.0</h3>
+<div id="iso-8859-1-on-32-bit-win7-with-r-v3.4.0" class="section level4">
+<h4>ISO-8859-1 on 32-bit win7 with R v3.4.0</h4>
 <p>The PASTED TEXT looked like an ISO-8859-1 interpretation in both the md file and the html file.</p>
 <p>md file:</p>
 <div class="figure">
@@ -473,8 +442,8 @@ if (!doneBefore) {
 </div>
 <p>The results with the ENCODING SETTING on [Ask] were identical to the ISO-8859-1 results.</p>
 </div>
-<div id="windows-1252-on-32-bit-win7-with-r-v3.4.0" class="section level3">
-<h3>WINDOWS-1252 on 32-bit win7 with R v3.4.0</h3>
+<div id="windows-1252-on-32-bit-win7-with-r-v3.4.0" class="section level4">
+<h4>WINDOWS-1252 on 32-bit win7 with R v3.4.0</h4>
 <p>The PASTED TEXT looks like this in the md file:</p>
 <div class="figure">
 <img src="data:image/png;base64,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" />
@@ -518,12 +487,12 @@ if (!doneBefore) {
 </ul>
 <p>That matches the second and third displayed characters in the KNITTED TEXT, and the rest of the characters are identical to their couterparts in the PASTED TEXT. So, it seems that the KNITTED TEXT is interpreted as ISO-8859-1, then encoded in UTF-8 for passing between two processes, but interpreted by the receiving process as Windows-1252 text, and converted to UTF-8 for output to the md and html files.</p>
 </div>
-<div id="utf-8-on-32-bit-win7-with-r-v3.4.0" class="section level3">
-<h3>UTF-8 on 32-bit win7 with R v3.4.0</h3>
+<div id="utf-8-on-32-bit-win7-with-r-v3.4.0" class="section level4">
+<h4>UTF-8 on 32-bit win7 with R v3.4.0</h4>
 <p>The PASTED TEXT was correctly encoded as Russian characters in both the md and html files. The KNITTED TEXT is interpreted as ISO-8859-1 for both files. The rendering and analysis of ISO-8859-1 interpretted text is shown and discussed above, so that discussion will not be repeated here.</p>
 </div>
-<div id="gb10830-on-32-bit-win7-with-r-v3.4.0" class="section level3">
-<h3>GB10830 on 32-bit win7 with R v3.4.0</h3>
+<div id="gb10830-on-32-bit-win7-with-r-v3.4.0" class="section level4">
+<h4>GB10830 on 32-bit win7 with R v3.4.0</h4>
 <p>The html file is identical to what is produced under R v3.4.4, but the md file is different. In the md file, the PASTED TEXT renders as Chinese characters,</p>
 <div class="figure">
 <img src="data:image/png;base64,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" />
@@ -532,10 +501,38 @@ if (!doneBefore) {
 <p>The KNITTED TEXT is interpreted as ISO-8859-1 in the same way as previously presented and discussed.</p>
 <p>Visual inspection of the files and comparison of the byte sequences show that both sets of text are identical between the two files. This indicates that either knitr directly copied the byte sequences from the md file to the html file, or knitr used identical interpretations and encodings to generate the two files.</p>
 </div>
+</div>
 <div id="rstudio-v1.1.383" class="section level3">
 <h3>RStudio v1.1.383</h3>
 <p>When I initially ran my 32-bit Windows tests, it was with RStudio v1.1.383 and R v3.4.0. All ENCODING SETTINGS gave the same results as the ISO-8859-1 setting with RStudio v1.1.442 and R v3.4.0. Getting all identical results indicated that the ENCODING SETTINGS was not yet implemented in RStudio v1.1.383. I figure that does not say much about on how knitr now handles encoding, with the setting implemented, so that information is probably not very useful.</p>
 </div>
+</div>
+<div id="computer-configuration" class="section level2">
+<h2>Computer Configuration</h2>
+<p>For any given knit, the Windows version and R version are noted at the top of this report and at the top of each Sample file. The code chunk below was written to record that information, plus the RStudio version and the versions of all the packages that I determined to be required for these experiments.</p>
+<pre class="r"><code>verFile     &lt;- &quot;versionInfo.csv&quot;</code></pre>
+<pre class="r"><code>doneBefore  &lt;- F
+gotVerFile  &lt;- file.exists(verFile)
+packsNeeded &lt;- readLines(&quot;packs.txt&quot;)
+os                        &lt;- sub(&quot;Windows 7&quot;   , &quot;7,&quot;       , win.version())
+if (!grepl(&quot;x64&quot;, os)) os &lt;- sub(&quot;7,&quot;          , &quot;7, 32-bit&quot;, os           )
+os                        &lt;- sub(&quot;Service Pack&quot;, &quot;SP&quot;       , os           )
+verData     &lt;- c(Windows = os,
+                 R       = sub(&quot;R version &quot;, &quot;&quot;, R.version.string),
+                 RStudio = paste( RStudio.Version()$version, collapse=&quot;.&quot; ),
+                 installed.packages(noCache=T)[packsNeeded,3]
+                 )
+if ( gotVerFile ) {
+   savedVerDat &lt;- read.table(verFile, sep=&quot;,&quot;, row.names=1, colClasses=&quot;character&quot;)
+   for ( i in 1:ncol(savedVerDat) ) {
+      doneBefore &lt;- doneBefore | all(verData==savedVerDat[,i])
+   }
+}
+if (!doneBefore) {
+   newVerDat &lt;- if (gotVerFile) cbind(savedVerDat, verData) else verData
+   write.table(newVerDat, verFile, sep=&quot;,&quot;, col.names=F)
+}</code></pre>
+<p>Unfortunately, that code chunk will not knit. RStudio.Version() executes fine in the RStudio console, but it fails when knitted. So, the chunk above has <code>eval=FALSE</code>, and I put the same code into a separate .R file, which I execute in the console with <code>source(&quot;versionInfo.R&quot;)</code>. It saves a file, &lt;versionInfo.csv&gt;, which you can open to see the version information for each configuration that I tested.</p>
 </div>
 <div id="pandoc" class="section level2">
 <h2>Pandoc</h2>
@@ -557,22 +554,31 @@ if (!doneBefore) {
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>I made a table on a <a href="ResultsTable.html">separate html page</a> which summarizes the results discussed above.</p>
-<p>Text that is pasted into RStudio is rendered in the editior panel of RStudio according to the ENCODING SETTING.</p>
-<div id="upon-knitting" class="section level3">
-<h3>Upon Knitting</h3>
-<div id="pasted-text-in-the-md-file" class="section level4">
-<h4>Pasted Text in the md File</h4>
-<p>Text of the Rmd file is copied as-is to the md file under most of the ENCODING SETTINGS that I tested. GB18030 is the exception. It seems to assume that the Rmd file is encoded in Windows-1252, so it converts the text. The md file always seems to be encoded in UTF-8.</p>
+<p>I wrote a <a href="ResultsTable.html">separate html file</a>, ResultsTable.html, with tables that summarize the results. In this summary, I will disregard the results with RStudio v1.1.383, since that just seems to default the behavior to the ISO-8859-1 setting.</p>
+<div id="rstudio-display" class="section level3">
+<h3>RStudio Display</h3>
+<p>Text that is pasted into the Rmd file is always rendered in the editior panel of RStudio v1.1.442 according to the ENCODING SETTING.</p>
 </div>
-<div id="knitted-text-in-the-md-file" class="section level4">
-<h4>Knitted Text in the md File</h4>
-<p>Text which is generated in the R code and flagged as “unknown” encoding is passed through as-is to the md file under the ISO and Windows ENCODING SETTINGS. If the ENCODING SETTING is UTF-8, then knitr assumes that the workspace strings are in Windows-1252, and knitr converts them to UTF-8. If the ENCODING SETTING is GB18030, then the workspace strings are converted in a way that is different from or in addition to the conversion that is done for Rmd file text. I did not try to figure out what sequence of conversions could produce the observed bit sequence, but it seems that there must be at least two conversions taking place to turn the original UTF-8 characters into eight-byte sequences. It is interesting that in all other results from this testing, R has consitently generated UTF-8 output, regardless of what it thought it held in memory. In the case of workspace output to an md file under the GB18030 ENCODING SETTING, R writes bit sequences which are not valid UTF-8 characters.</p>
+<div id="most-common-results" class="section level3">
+<h3>Most Common Results</h3>
+<p>In the knitted output files, all of the R versions had the same results on the 64-bit Windows machine. Under the Windows oriented ENCODING SETTINGS, ISO-8859-1 and WINDOWS-1252 the text was treated identically whether it originated from the Rmd file or was read into the execution environment by R code. The differences were between the two output files. The text was passed to the md file as-is, whereas it was converted according to the ENCODING SETTING for the html file. With the UTF-8 setting, the text was treated identically across the two files, but differently according to its source. The text from the Rmd file was unchanged, while the read-in text was interpreted as Windows-1252 text. With the GB18030 setting, all text was interpreted as Windows-1252 except when sourced from the Rmd file for html output, in which case it was interpreted as GB18030. Additionally, the text read into the execution environment was converted to something other than UTF-8 (probably GB18030) for the md file.</p>
 </div>
-<div id="html-output" class="section level4">
-<h4>HTML Output</h4>
-<p>I’m pretty sure that I read somewhere that knitr generates the html output from the md file. My results pretty much support that claim. Under the UTF-8 ENCODING SETTING, everything seems to be passed to the html file as it is in the md file. Under the ISO and Windows settings, the md file is assumed to be whatever the ENCODING SETTING is, and it gets converted to UTF-8 for the html file. Once again, GB18030 is the exception. As I discuss above, the PASTED TEXT is interpreted as Windows-1252 and is converted to a UTF-8 encoding for the md file. It then shows up as Chinese characters in the html file.</p>
-</div>
+<div id="r-v3.4.0-on-32-bit-windows" class="section level3">
+<h3>R v3.4.0 on 32-bit Windows</h3>
+<p>When I tested with R v3.4.0 on the 32-bit Windows I got different results, but the R and Windows configuration was not the only difference. The following nine packages were at older versions.</p>
+<ul>
+<li>backports</li>
+<li>digest</li>
+<li>knitr</li>
+<li>Rcpp</li>
+<li>rmarkdown</li>
+<li>rprojroot</li>
+<li>stringi</li>
+<li>stringr</li>
+<li>yaml</li>
+</ul>
+<p>Of course, problem reports should not be done with old packages, but I am not so much trying to report a problem as trying to provide clues for solving a problem that is well known to have existed for a long time. With that in mind, the differences between the old an new behavior may be instructive.</p>
+<p>With the ISO-8859-1 setting, the text was always interpreted as ISO-8859-1, but it was converted to UTF-8 in different ways for the two files. The md file just had a straight conversion, whereas control codes were transformed into human readable tags for the html file. With the other settings, the output depended on the source of the text. The text from the Rmd file was interpreted according to the ENCODING SETTING. The read-in text was interpreted as Windows-1252 under the GB18030 setting and as ISO-8859-1 under the UTF-8 and WINDOWS-1252 settings. Additionally, with the WINDOWS-1252 setting, all text (both from the Rmd file and read-in) was internally converted to UTF-8, then interpreted again as Windows-1252 before being converted to UTF-8 for output.</p>
 </div>
 </div>
 <div id="conclusion" class="section level2">
@@ -585,6 +591,15 @@ if (!doneBefore) {
 <div id="my-speculation" class="section level3">
 <h3>My Speculation</h3>
 <p>I get the impression that about ten years ago there was a battle raging between the open source community and Microsoft over who could create the best standard for encoding all of the world’s characters. Apparently Microsoft resisted incorporating UTF-8 support in Windows, so software developers had to come up with all kinds of work-arounds to make their code handle UTF-8 characters in Windows 7. I’m wondering if, over the years, Microsoft has discretely capitulated and has quietly changed Windows 7 through the weekly background updates. I’m thinking that without openly supporting UTF-8, the Windows 7 shell perhaps allows characters to pass through in ways that it originally did not. This could have made many of those work-arounds unnecessary. It could be that the work-arounds themselves are now causing problems due to changes in Windows 7. I say this because the behavior I describe in this report strikes me as a problem of R doing things that it does not need to do rather than a problem of R failing to do something that it should do. I’m wondering if the solution may involve simply removing code from certain packages which was added five or six years ago in order to deal with problems that existed at that time.</p>
+</div>
+<div id="further-work" class="section level3">
+<h3>Further Work</h3>
+<p>I will do more testing to see which of the nine packages influences the encoding behavior. Also, I see that R v3.5.0 was released shortly after I started working on this report. I will need to test with that and see if things are any better. Those tests will have to wait, though, because I have other things to do. I will update this report on github whenever I do additional testing.</p>
+</div>
+<div id="linux" class="section level3">
+<h3>Linux</h3>
+<p>I’ve been wanting to switch to Linux for over a decade but just haven’t gotten around to it. Perhaps it is time to make the leap. In the time it took me to write this report, I could have become a Linux master.</p>
+</div>
 </div>
 </div>
 
