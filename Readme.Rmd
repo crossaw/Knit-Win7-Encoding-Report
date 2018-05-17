@@ -39,7 +39,7 @@ This report is posted in a github repo.  The Readme file is the main report and 
 Terms with specific meanings that I define in this report are spelled with ALL CAPITAL LETTERS.
 
 ### File Names
-The names of files and folders are presented like |:file or folder name:|.  While writing most of this report, I was enclosing them in angle brackets, until I determined that angle brackets didn't work well.  There might be some that I failed to update after I changed the convention.
+The names of files and folders are presented like |:file or folder name:|.
 
 # Demonstration
 
@@ -98,7 +98,7 @@ I will refer to that as the "KNITTED TEXT", because it is generated when this fi
 
 ## Sample Files
 
-The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING.  In this report I use graphics to show the results obtained from those tests.  I also have in the github repo a folder called |:Samples:| which contains the md and html files.  For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report.  It basically contains the Pasted Text and Knitted Text sections of this report.  After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.
+The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING.  In this report I use graphics to show the results obtained from those tests.  I also have in the github repo a folder called |:[Samples](Samples/):| which contains the md and html files.  For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report.  It basically contains the Pasted Text and Knitted Text sections of this report.  After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.
 
 ## Encoding Setting
 
@@ -222,7 +222,7 @@ This is identical to what was seen under the ISO-8859-1 setting, except that the
 
 `perl inspectHTML.pl testFile.html > bytes/winhtml.txt`
 
-I see that the bytes corresponding to the first six characters of the PASTED TEXT and the KNITTED TEXT are c3 90 c5 a1 c3 90 c2 be c3 90 c2 b3.  That is the UTF-8 encoding of U+00D0 U+0161 U+00D0 U+00BE U+00D0 U+00B3 (disregard spaces), which maps as shown above for ISO-8859-1, except that the second character is different.
+I see that the bytes corresponding to the first six characters of the PASTED TEXT and the KNITTED TEXT are c3 90 c5 a1 c3 90 c2 be c3 90 c2 b3.  That is the UTF-8 encoding of U+00D0, U+0161, U+00D0, U+00BE, U+00D0, and U+00B3, which maps as shown above for ISO-8859-1, except that the second character is different.
 
 * U+0161 = ![](img/uni0161.png)
 
@@ -243,7 +243,7 @@ It looks like this in the html file:
 
 ![](img/UTFhtml.png)
 
-Those look like Windows-1252 interpretations.  The charToRaw chunk in the Starting Bytes section above still shows the STARTING BYTES with the correct UTF-8 encoding.  Somewhere in the generation of the md file, knitr is deciding that the bytes it holds in its workspace represent Windows-1252 encoded text, and it is converting that text to UTF-8 to create the md file.  It does not do that with the text it gets from the editor panel of RStudio.  It then accepts the md file as UTF-8 for creation of the UTF-8 encoded html file.
+Those look like Windows-1252 interpretations.  The charToRaw chunk in the Starting Bytes section above still shows the STARTING BYTES with the correct UTF-8 encoding.  Somewhere in the generation of the md file, knitr is deciding that the bytes it reads into its execution environment represent Windows-1252 encoded text, and it is converting that text to UTF-8 to create the md file.  It does not do that with the text it gets from the editor panel of RStudio.  It then accepts the md file as UTF-8 for creation of the UTF-8 encoded html file.
 
 ### GB18030
 GB18030 is a Chinese encoding standard.  When it is set as the ENCODING SETTING, the PASTED TEXT appears as follows in RStudio.
@@ -270,7 +270,7 @@ The KNITTED TEXT in the md file looks like this in notepad:
 
 ![](img/gbKnitmd.png)
 
-I found the bit sequence for that text in <mdGB.txt>.  It starts with the two hash characters and the space, 23 23 20, and it ends with the question mark and line feed, 3f 0a.  In between, there are 335 bytes full of sequences which are not valid UTF-8 encodings.  There are a few more one-byte ASCII characters: spaces and the sequence "VIP-".  If I strip out the bytes for those, I am left with 324 bytes encoding the original 46 Russian characters.  As an example, the first word, which has four letters, is encoded as 81 30 88 34 81 30 94 38 81 30 88 34 81 30 86 36 81 30 88 34 81 30 85 36 81 30 88 34 81 30 86 36.  That is 32 bytes.  If I divide it into sequences of eight bytes, I can see that the second and third sequences are identical, as are the second and third letters in the original Russian text.  My guess is that this is the GB18030 encoding of a WINDOWS-1252 interpretation of the original UTF-8 encoded Russian text.  But, if knitr were trying to encode the md file in GB18030, then I don't know why it would have used UTF-8 encoding on its WINDOWS-1252 interpretation of the PASTED TEXT.
+I found the bit sequence for that text in <mdGB.txt>.  It starts with the two hash characters and the space, 23 23 20, and it ends with the question mark and line feed, 3f 0a.  In between, there are 335 bytes full of sequences which are not valid UTF-8 encodings.  There are a few more one-byte ASCII characters: spaces and the sequence "VIP-".  If I strip out the bytes for those, I am left with 324 bytes encoding the original 46 Russian characters.  As an example, the first word, which has four letters, is encoded as 81 30 88 34 81 30 94 38 81 30 88 34 81 30 86 36 81 30 88 34 81 30 85 36 81 30 88 34 81 30 86 36.  That is 32 bytes.  If I divide it into sequences of eight bytes, I can see that the second and third sequences are identical, as are the second and third letters in the original Russian text.  My guess is that this is the GB18030 encoding of a WINDOWS-1252 interpretation of the original UTF-8 encoded Russian text.  But, if knitr were trying to encode the md file in GB18030, then I don't know why it would have used UTF-8 encoding on its WINDOWS-1252 interpretation of the PASTED TEXT.  I have no good explanation for why the md file is saved this way.
 
 #### GB PASTED TEXT in HTML
 
@@ -306,7 +306,7 @@ Although I have described plausible ways that both the PASTED TEXT and the KNITT
 
 ## Other R Versions
 
-The version of R used by RStudio can be selected at [Tools] ==> [Global Options] ==> [General] ==> [R version:].  All the work reported above was done with 64-bit R v3.4.4.  I also tested all the ENCODING SETTINGS with 32-bit R v3.4.4, 64-bit R v3.4.0, and 32-bit R v3.4.0.  The results were identical to what is reported above.  In R v3.4.0 all the packages had the same version as in R v3.4.4 except the base packages, which follow the R version number.  In R v3.4.4, the 32-bit and 64-bit builds share the same library.
+The version of R used by RStudio can be selected at [Tools] ==> [Global Options] ==> [General] ==> [R version:].  All the work reported above was done with 64-bit R v3.4.4.  I also tested all the ENCODING SETTINGS with 32-bit R v3.4.4, 64-bit R v3.4.0, and 32-bit R v3.4.0.  The results were identical to what is reported above.  In R v3.4.0 all the packages had the same version as in R v3.4.4 except the base packages, which follow the R version number.
 
 ## On 32-bit Windows 7
 
@@ -322,7 +322,7 @@ With R switched to R v3.4.0 on the 32-bit win7 machine, I was surprised to find 
 
 #### ISO-8859-1 on 32-bit win7 with R v3.4.0
 
-The PASTED TEXT looked like an ISO-8859-1 interpretation in both the md file and the html file.
+The PASTED TEXT looks like an ISO-8859-1 interpretation in both the md file and the html file.
 
 md file:
 
@@ -338,7 +338,7 @@ That is the same result in the html file that was seen for that setting on the 6
 
 I found the PASTED TEXT in <ISOmd.txt>.  The bytes for the first six characters are c3 90 c2 9a c3 90 c2 be c3 90 c2 b3.  That is the bit sequence for a UTF-8 encoding of an ISO-8859-1 interpretation of the original UTF-8 bit sequence.
 
-The KNITTED TEXT also looked like ISO-8859-1 interpretations in both the md file and the html file, but R did something interesting with the control codes.  The second character should be U+009A, but instead of encoding that as the UTF-8 sequence c2 9a, which seems to generally not be rendered, knitr converted it into a sequence of single-byte UTF-8 characters that present the code point in human-readable form.  Several other control code characters were also handled that way.
+The KNITTED TEXT also looks like ISO-8859-1 interpretations in both the md file and the html file, but R did something interesting with the control codes.  The second character should be U+009A, but instead of encoding that as the UTF-8 sequence c2 9a, which seems to generally not be rendered, knitr converted it into a sequence of single-byte UTF-8 characters that present the code point in human-readable form.  Several other control code characters were also handled that way.
 
 md file:
 
@@ -360,7 +360,7 @@ and this in the html file:
 
 ![](img/win32bit-R340/winPasteHTML.png)
 
-These are identical, but they are full of characters that had not yet been observed in these tests.  I ran the perl scripts to put the byte sequence files into <bytes/win32bit-R340/>.  In both the md and html output, the first 24 bytes of the PASTED TEXT are c3 83 c2 90 c3 85 c2 a1 c3 83 c2 90 c3 82 c2 be c3 83 c2 90 c3 82 c2 b3.  They encode the rendered text in UTF-8 as shown below, which matches the first nine visible characters, the DCS being unrendered.
+These are identical, but they are full of characters that had not yet been observed in these tests.  I ran the perl scripts to put the byte sequence files into |:bytes/win32bit-R340/:|.  In both the md and html output, the first 24 bytes of the PASTED TEXT are c3 83 c2 90 c3 85 c2 a1 c3 83 c2 90 c3 82 c2 be c3 83 c2 90 c3 82 c2 b3.  They encode the rendered text in UTF-8 as shown below, which matches the first nine visible characters, the DCS being unrendered.
 
 * c3 83 = U+00C3 = ![](img/uniC3.png)
 * c2 90 = U+0090 = ![](img/uni90.png) = Device Control String
@@ -375,7 +375,7 @@ These are identical, but they are full of characters that had not yet been obser
 * c3 82 = U+00C2 = ![](img/uniC2.png)
 * c2 b3 = U+00BE = ![](img/uniB3.png)
 
-Those characters, if encoded in Windows-1252, would be, c3 ?? c5 a1 c3 ?? c2 be c3 ?? c2 b3.  I use ?? for the DCS, because Windows-1252 does not define a DCS character.  However, it does identify several byte values as "Not Used", including 90.  If we assume that knitr derived the DCS characters from that bit sequence, then knitr would have been interpreting c3 90 c5 a1 c3 90 c2 be c3 90 c2 b3 as Windows-1252.  We see from the first WINDOW-1252 discussion above, that this is the bit sequence for the UTF-8 encoding of a Windows-1252 interpretation of the original bit sequence.  So, it seems that our UTF-8 Russian text is interpreted as Windows-1252, then encoded in UTF-8 for passing between two processes, but interpreted by the receiving process as Windows-1252 text, and converted to UTF-8 for output to the md and html files.
+Those characters, if encoded in Windows-1252, would be, c3 ?? c5 a1 c3 ?? c2 be c3 ?? c2 b3.  I use ?? for the DCS, because Windows-1252 does not define a DCS character.  However, it does identify several byte values as "Not Used", including 90.  If we assume that knitr derived the DCS characters from that bit sequence, then knitr would have been interpreting c3 90 c5 a1 c3 90 c2 be c3 90 c2 b3 as Windows-1252.  We see from the first WINDOWS-1252 discussion above, that this is the bit sequence for the UTF-8 encoding of a Windows-1252 interpretation of the original bit sequence.  So, it seems that our UTF-8 Russian text is interpreted as Windows-1252, then encoded in UTF-8 for passing between two processes, but interpreted by the receiving process as Windows-1252 text, and converted to UTF-8 for output to the md and html files.
 
 The KNITTED TEXT looks like this in the md file:
 
@@ -394,7 +394,7 @@ That matches the second and third displayed characters in the KNITTED TEXT, and 
 
 #### UTF-8 on 32-bit win7 with R v3.4.0
 
-The PASTED TEXT was correctly encoded as Russian characters in both the md and html files.  The KNITTED TEXT is interpreted as ISO-8859-1 for both files.  The rendering and analysis of ISO-8859-1 interpretted text is shown and discussed above, so that discussion will not be repeated here.
+The PASTED TEXT is correctly encoded as Russian characters in both the md and html files.  The KNITTED TEXT is interpreted as ISO-8859-1 for both files.  The rendering and analysis of ISO-8859-1 interpretted text is shown and discussed above, so that discussion will not be repeated here.
 
 #### GB10830 on 32-bit win7 with R v3.4.0
 
@@ -441,7 +441,7 @@ if (!doneBefore) {
 }
 ```
 
-Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, <`r verFile`>, which you can open to see the version information for each configuration that I tested.
+Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, |:`r verFile`:|, which you can [open](`r verFile`) to see the version information for each configuration that I tested.
 
 ## Pandoc
 
@@ -449,7 +449,7 @@ Since knitr uses pandoc to convert files, I decided to test the file conversion 
 
 `pandoc -s -o fromPandoc.html testFile.md`
 
-The resulting html file has correct UTF-8 encoded Russian text FOR both the PASTED TEXT and the KNITTED TEXT.  It appears that knitr's misinterpretation does not happen in pandoc, unless its pandoc call includes a bad parameter.
+The resulting html file has correct UTF-8 encoded Russian text for both the PASTED TEXT and the KNITTED TEXT.  It appears that knitr's misinterpretation does not happen in pandoc, or perhaps its pandoc call includes a bad parameter.
 
 ### My Solution
 
@@ -465,15 +465,15 @@ The html file created by command-line pandoc is much different from what the [Kn
 
 ## Summary
 
-I wrote a [separate html file](ResultsTable.html), ResultsTable.html, with tables that summarize the results.  In this summary, I will disregard the results with RStudio v1.1.383, since that just seems to default the behavior to the ISO-8859-1 setting.
+I wrote a [separate html file](ResultsTables.html), |:ResultsTables.html:|, with tables that summarize the results.  In this summary, I will disregard the results with RStudio v1.1.383, since that just seems to default the behavior to the ISO-8859-1 setting.
 
 ### RStudio Display
 
 Text that is pasted into the Rmd file is always rendered in the editior panel of RStudio v1.1.442 according to the ENCODING SETTING.
 
-### Most Common Results
+### Most Common Results in Output Files
 
-In the knitted output files, all of the R versions had the same results on the 64-bit Windows machine.  Under the Windows oriented ENCODING SETTINGS, ISO-8859-1 and WINDOWS-1252 the text was treated identically whether it originated from the Rmd file or was read into the execution environment by R code.  The differences were between the two output files.  The text was passed to the md file as-is, whereas it was converted according to the ENCODING SETTING for the html file.  With the UTF-8 setting, the text was treated identically across the two files, but differently according to its source.  The text from the Rmd file was unchanged, while the read-in text was interpreted as Windows-1252 text.  With the GB18030 setting, all text was interpreted as Windows-1252 except when sourced from the Rmd file for html output, in which case it was interpreted as GB18030.  Additionally, the text read into the execution environment was converted to something other than UTF-8 (probably GB18030) for the md file.
+In the knitted output files, almost all tested software configurations had the same results.  Under ISO-8859-1 and WINDOWS-1252, the text was treated identically whether it originated from the Rmd file or was read into the execution environment by R code.  The differences were between the two output files.  The text was passed to the md file as-is, whereas it was converted according to the ENCODING SETTING for the html file.  With the UTF-8 setting, the text was treated identically across the two files, but differently according to its source.  The text from the Rmd file was unchanged, while the read-in text was interpreted as Windows-1252 text.  With the GB18030 setting, all text was interpreted as Windows-1252 except when sourced from the Rmd file for html output, in which case it was interpreted as GB18030.  Additionally, the text read into the execution environment was converted to something other than UTF-8 (probably GB18030) for the md file.
 
 ### R v3.4.0 on 32-bit Windows
 
