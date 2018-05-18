@@ -1,7 +1,7 @@
 ---
 title: "knitr Encoding in RStudio on Win7"
 author: "Arnold Cross"
-date: "2018-05-17"
+date: "2018-05-18"
 output: 
   html_document: 
     keep_md: yes
@@ -13,7 +13,7 @@ OS: Windows 7 x64 (build 7601) SP 1
 
 R version 3.4.4 (2018-03-15)
 
-Encoding Setting:  [Ask]  (This is identified manually and could be wrong if <setting.txt> wasn't updated prior to knitting.)
+Encoding Setting:  [Ask]  (This is identified manually and could be wrong if |:setting.txt:| wasn't updated prior to knitting.)
 
 # Introduction
 
@@ -23,7 +23,7 @@ This report presents a character encoding issue which I have experienced in Wind
 
 ## Delivery
 
-This report is posted in a github repo.  The Readme file is the main report and is intended to be a complete presentation of the information.  All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked.
+This report is posted in a [github repo](https://github.com/crossaw/Knit-Win7-Encoding-Report) at https://github.com/crossaw/Knit-Win7-Encoding-Report.  The Readme file is the main report and is intended to be a complete presentation of the information.  All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked.  The report is also hosted on [github pages](https://crossaw.github.io/Knit-Win7-Encoding-Report/) at https://crossaw.github.io/Knit-Win7-Encoding-Report/.
 
 ## Conventions
 
@@ -31,7 +31,7 @@ This report is posted in a github repo.  The Readme file is the main report and 
 Terms with specific meanings that I define in this report are spelled with ALL CAPITAL LETTERS.
 
 ### File Names
-The names of files and folders are presented like |:file or folder name:|.
+The names of files and folders are presented like |:file or folder name:|.  Initially I used the more common convention, angle brackets, but they sometimes turned into invisible tags in the knitted html file, and html escape codes made the md file ugly.
 
 # Demonstration
 
@@ -105,7 +105,7 @@ I will refer to that as the "KNITTED TEXT", because it is generated when this fi
 
 ## Sample Files
 
-The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING.  In this report I use graphics to show the results obtained from those tests.  I also have in the github repo a folder called |:[Samples](Samples/):| which contains the md and html files.  For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report.  It basically contains the Pasted Text and Knitted Text sections of this report.  After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.
+The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING.  In this report I use graphics to show the results obtained from those tests.  I also have in the github repo a folder called |:[Samples](https://github.com/crossaw/Knit-Win7-Encoding-Report/tree/master/Samples):| which contains the md and html files.  For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report.  It basically contains the Pasted Text and Knitted Text sections of this report.  After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.
 
 ## Encoding Setting
 
