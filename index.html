@@ -11,7 +11,7 @@
 
 <meta name="author" content="Arnold Cross" />
 
-<meta name="date" content="2018-05-17" />
+<meta name="date" content="2018-05-18" />
 
 <title>knitr Encoding in RStudio on Win7</title>
 
@@ -121,14 +121,14 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">knitr Encoding in RStudio on Win7</h1>
 <h4 class="author"><em>Arnold Cross</em></h4>
-<h4 class="date"><em>2018-05-17</em></h4>
+<h4 class="date"><em>2018-05-18</em></h4>
 
 </div>
 
 
 <p>OS: Windows 7 x64 (build 7601) SP 1</p>
 <p>R version 3.4.4 (2018-03-15)</p>
-<p>Encoding Setting: [Ask] (This is identified manually and could be wrong if &lt;setting.txt&gt; wasn’t updated prior to knitting.)</p>
+<p>Encoding Setting: [Ask] (This is identified manually and could be wrong if |:setting.txt:| wasn’t updated prior to knitting.)</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <div id="purpose" class="section level2">
@@ -137,7 +137,7 @@ $(document).ready(function () {
 </div>
 <div id="delivery" class="section level2">
 <h2>Delivery</h2>
-<p>This report is posted in a github repo. The Readme file is the main report and is intended to be a complete presentation of the information. All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked.</p>
+<p>This report is posted in a <a href="https://github.com/crossaw/Knit-Win7-Encoding-Report">github repo</a> at <a href="https://github.com/crossaw/Knit-Win7-Encoding-Report" class="uri">https://github.com/crossaw/Knit-Win7-Encoding-Report</a>. The Readme file is the main report and is intended to be a complete presentation of the information. All the files that I used in the creation of this report are contained in the repo except for some on-line reference materials which are linked. The report is also hosted on <a href="https://crossaw.github.io/Knit-Win7-Encoding-Report/">github pages</a> at <a href="https://crossaw.github.io/Knit-Win7-Encoding-Report/" class="uri">https://crossaw.github.io/Knit-Win7-Encoding-Report/</a>.</p>
 </div>
 <div id="conventions" class="section level2">
 <h2>Conventions</h2>
@@ -147,7 +147,7 @@ $(document).ready(function () {
 </div>
 <div id="file-names" class="section level3">
 <h3>File Names</h3>
-<p>The names of files and folders are presented like |:file or folder name:|.</p>
+<p>The names of files and folders are presented like |:file or folder name:|. Initially I used the more common convention, angle brackets, but they sometimes turned into invisible tags in the knitted html file, and html escape codes made the md file ugly.</p>
 </div>
 </div>
 </div>
@@ -194,7 +194,7 @@ while (&lt;&gt;) {
 </div>
 <div id="sample-files" class="section level2">
 <h2>Sample Files</h2>
-<p>The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING. In this report I use graphics to show the results obtained from those tests. I also have in the github repo a folder called |:<a href="Samples/">Samples</a>:| which contains the md and html files. For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report. It basically contains the Pasted Text and Knitted Text sections of this report. After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.</p>
+<p>The Findings section below describes the appearance of the PASTED TEXT and KNITTED TEXT in md and html files created with different values of the ENCODING SETTING. In this report I use graphics to show the results obtained from those tests. I also have in the github repo a folder called |:<a href="https://github.com/crossaw/Knit-Win7-Encoding-Report/tree/master/Samples">Samples</a>:| which contains the md and html files. For those files I knitted a TEST FILE, |:testFile.Rmd:|, which is an abbreviated version of this report. It basically contains the Pasted Text and Knitted Text sections of this report. After knitting, I renamed each output file according to the ENCODING SETTING that was used to create it and moved it to |:Samples:|.</p>
 </div>
 <div id="encoding-setting" class="section level2">
 <h2>Encoding Setting</h2>
