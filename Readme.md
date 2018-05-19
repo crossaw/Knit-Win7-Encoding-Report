@@ -1,7 +1,7 @@
 ---
 title: "knitr Encoding in RStudio on Win7"
 author: "Arnold Cross"
-date: "2018-05-18"
+date: "2018-05-19"
 output: 
   html_document: 
     keep_md: yes
@@ -501,6 +501,8 @@ When I tested with R v3.4.0 on the 32-bit Windows I got different results, but t
 Of course, problem reports should not be done with old packages, but I am not so much trying to report a problem as trying to provide clues for solving a problem that is well known to have existed for a long time.  With that in mind, the differences between the old an new behavior may be instructive.
 
 With the ISO-8859-1 setting, the text was always interpreted as ISO-8859-1, but it was converted to UTF-8 in different ways for the two files.  The md file just had a straight conversion, whereas control codes were transformed into human readable tags for the html file.  With the other settings, the output depended on the source of the text.  The text from the Rmd file was interpreted according to the ENCODING SETTING.  The read-in text was interpreted as Windows-1252 under the GB18030 setting and as ISO-8859-1 under the UTF-8 and WINDOWS-1252 settings.  Additionally, with the WINDOWS-1252 setting, all text (both from the Rmd file and read-in) was internally converted to UTF-8, then interpreted again as Windows-1252 before being converted to UTF-8 for output.
+
+A possibly important finding here is that the GB18030 setting did not produce UTF-8 invalid sequences in the md file.
 
 ## Conclusion
 
