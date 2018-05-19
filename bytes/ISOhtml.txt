@@ -1,6 +1,0 @@
-
-PASTED TEXT:
-3c 70 3e c3 90 c2 9a c3 90 c2 be c3 90 c2 b3 c3 90 c2 be 20 c3 90 c2 92 c3 91 c2 8b 20 c3 91 c2 85 c3 90 c2 be c3 91 c2 82 c3 90 c2 b8 c3 91 c2 82 c3 90 c2 b5 20 c3 90 c2 b2 c3 90 c2 b8 c3 90 c2 b4 c3 90 c2 b5 c3 91 c2 82 c3 91 c2 8c 20 c3 90 c2 b2 20 c3 90 c2 ba c3 90 c2 b0 c3 91 c2 87 c3 90 c2 b5 c3 91 c2 81 c3 91 c2 82 c3 90 c2 b2 c3 90 c2 b5 20 56 49 50 2d c3 90 c2 bf c3 90 c2 b5 c3 91 c2 80 c3 91 c2 81 c3 90 c2 be c3 90 c2 bd c3 91 c2 8b 20 c3 90 c2 bd c3 90 c2 b0 20 c3 91 c2 84 c3 90 c2 be c3 91 c2 80 c3 91 c2 83 c3 90 c2 bc c3 90 c2 b5 3f 3c 2f 70 3e 0a 
-
-KNITTED TEXT:
-3c 70 72 65 3e 3c 63 6f 64 65 3e 23 23 20 c3 90 c2 9a c3 90 c2 be c3 90 c2 b3 c3 90 c2 be 20 c3 90 c2 92 c3 91 c2 8b 20 c3 91 c2 85 c3 90 c2 be c3 91 c2 82 c3 90 c2 b8 c3 91 c2 82 c3 90 c2 b5 20 c3 90 c2 b2 c3 90 c2 b8 c3 90 c2 b4 c3 90 c2 b5 c3 91 c2 82 c3 91 c2 8c 20 c3 90 c2 b2 20 c3 90 c2 ba c3 90 c2 b0 c3 91 c2 87 c3 90 c2 b5 c3 91 c2 81 c3 91 c2 82 c3 90 c2 b2 c3 90 c2 b5 20 56 49 50 2d c3 90 c2 bf c3 90 c2 b5 c3 91 c2 80 c3 91 c2 81 c3 90 c2 be c3 90 c2 bd c3 91 c2 8b 20 c3 90 c2 bd c3 90 c2 b0 20 c3 91 c2 84 c3 90 c2 be c3 91 c2 80 c3 91 c2 83 c3 90 c2 bc c3 90 c2 b5 3f 3c 2f 63 6f 64 65 3e 3c 2f 70 72 65 3e 0a 

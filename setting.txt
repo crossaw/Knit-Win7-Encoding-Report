@@ -1,7 +1,0 @@
-Place an asterisk in front of the setting under which the Rmd file is being knitted.
-
-*[Ask]
-ISO-8859-1
-GB18030
-UTF-8
-WINDOWS-1252
