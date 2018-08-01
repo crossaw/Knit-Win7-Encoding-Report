@@ -23,6 +23,10 @@ OS: `r os`
 
 Encoding Setting:  `r es`  (This is identified manually and could be wrong if |:setting.txt:| wasn't updated prior to knitting.)
 
+#### Update, 31 Jul 2018
+
+Today I reran all tests on the 64-bit Win7 E6430 with R v3.5.1, RStudio v1.1.456, and all packages up to date (see [versionInfo.csv](versionInfo.csv) for package versions).  All results were identical to the results reported below for 64-bit Win7 E6430 with R v3.4.4, RStudio v1.1.442 (which is the majority of the report).  Below this paragraph is the original report of 19 May 2018, except that I did make a few typographical corrections at the time of this update.
+
 # Introduction
 
 ## Purpose
@@ -408,7 +412,7 @@ Visual inspection of the files and comparison of the byte sequences show that bo
 
 ### RStudio v1.1.383
 
-When I initially ran my 32-bit Windows tests, it was with RStudio v1.1.383 and R v3.4.0.  All ENCODING SETTINGS gave the same results as the ISO-8859-1 setting with RStudio v1.1.442 and R v3.4.0.  Getting all identical results indicated that the ENCODING SETTINGS was not yet implemented in RStudio v1.1.383.  I figure that does not say much about on how knitr now handles encoding, with the setting implemented, so that information is probably not very useful.
+When I initially ran my 32-bit Windows tests, it was with RStudio v1.1.383 and R v3.4.0.  All ENCODING SETTINGS gave the same results as the ISO-8859-1 setting with RStudio v1.1.442 and R v3.4.0.  Getting all identical results indicated that the ENCODING SETTINGS was not yet implemented in RStudio v1.1.383.  I figure that does not say much about how knitr now handles encoding with the setting implemented, so that information is probably not very useful.
 
 ## Computer Configuration
 
@@ -441,7 +445,7 @@ if (!doneBefore) {
 }
 ```
 
-Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the console with `source("versionInfo.R")`.  It saves a file, |:`r verFile`:|, which you can [open](`r verFile`) to see the version information for each configuration that I tested.
+Unfortunately, that code chunk will not knit.  RStudio.Version() executes fine in the RStudio console, but it fails when knitted.  So, the chunk above has `eval=FALSE`, and I put the same code into a separate .R file, which I execute in the RStudio console with `source("versionInfo.R")`.  It saves a file, |:`r verFile`:|, which you can [open](`r verFile`) to see the version information for each configuration that I tested.
 
 ## Pandoc
 
